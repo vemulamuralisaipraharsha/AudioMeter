@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    padding-top: 100px;
+}
+
+@media (max-width:760px){
+    body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        padding-top: 200px;
+    }
+}
+
+.menu {
+    height: 82px;
+    width: 100vw;
+    background-color: #283198;
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+}
+
+.option-holder {
+    position: relative;
+    top: 11px;
+    max-width: 500px;
+    padding: 0 2rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.option {
+    width: 60px;
+    height: 60px;
+    background-color: #242B81;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.option-svg {
+    transform: translate(40%, 40%);
+}
+
+.logo {
+    line-height: 0px;
+    display: flex;
+    justify-content:center;
+}
+
+.quotation {
+    max-width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+.quotation p {
+    text-align: center;
+    margin-top: 0;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 5px;
+    padding: 0.9rem 3rem;
+    background-color: #E9ECFF;
+}
+
+.home-button {
+    transform: translateX(-50%);
+    left: 50%;
+    position: relative;
+    border-radius: 100px;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #2997FF;
+    color: #ffffff;
+    padding: 0.5rem 2.5rem 1rem 2.5rem;
+    margin: 4rem 0 0.1rem 0;
+}
+
+.Arrow {
+    transform: translate(40%, 28%);
+}

@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    padding-top: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pic {
+    max-width: fit-content;
+    padding: 0.5rem;
+    display: inline-block;
+    background-color: #C7CCFF;
+    border-radius: 100px;
+}
+
+.analysing {
+    font-size: 40px;
+    color: #929292;
+}
+
+@media (max-width:720px) {
+    .pic {
+        max-width: fit-content;
+        padding: 0.5rem;
+        display: inline-block;
+        background-color: #C7CCFF;
+        border-radius: 100px;
+        padding: 2.5rem;
+    }
+    
+    .analysing {
+        font-size: 45px;
+        color: #929292;
+    }
+
+    .sine-wave {
+        transform: scale(1.3);
+    }
+}

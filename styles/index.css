@@ -1,0 +1,80 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    padding-top: 100px;
+    padding-bottom: 82px;
+}
+
+.menu {
+    height: 82px;
+    width: 100vw;
+    background-color: #283198;
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+}
+
+.option-holder {
+    position: relative;
+    top: 11px;
+    max-width: 500px;
+    padding: 0 2rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.option {
+    width: 60px;
+    height: 60px;
+    background-color: #242B81;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.report-card-container {
+    background-color: #EDEEFA;
+    width: 320px;
+    max-width: 500px;
+    padding: 1rem 1rem;
+    margin: 2rem 1.5rem;
+    border-radius: 16px;
+    margin: 1.5rem auto;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+}
+
+.report-header {
+    background-color: #283198df;
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100px;
+    text-align: right;
+    z-index: 10;
+}
+
+.report-header h1 {
+    padding: 0 3rem 0 0;
+    font-size: 40px;
+    color: #ffffff;
+}
+
+.report-button {
+    border-radius: 100px;
+    left: 50%;
+    transform: translateX(50%);
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #2997FF;
+    color: #ffffff;
+    padding: 0.8rem 2.5rem;
+    margin: 1rem 0 0.1rem 0;
+}
+
+.option-svg {
+    transform: translate(40%, 40%);
+}
