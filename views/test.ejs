@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+    <link rel="stylesheet" href="../css/test.css">
+</head>
+<body>
+    <div id="popup_box">
+        <h1></h1>
+    </div>    
+    <div class="toggle">
+        <div class="left">
+            <h2 style="display: inline-block;">Left</h2>
+            <img src="../images/airpods.svg" alt="airpods" style="display: inline-block; transform: translate(10%, 30%);">
+        </div>
+        <div class="right">
+            <h2 style="display: inline-block;">Right</h2>
+            <img src="../images/airpods.svg" alt="airpods" style="display: inline-block; transform: translate(10%, 30%);">
+        </div>
+    </div>
+    <div class="wave" style="padding: 0rem 0.2rem;">
+        <img src="../images/sound-waves.svg" alt="wave" class="wave">
+    </div>
+    <h1>Playing sound...</h1>
+    <div class="cross-check">
+        <p style="margin-block-start: 0.5em;
+           margin-block-end: 0.5em;">Can you hear the sound?</p>
+    </div>
+    <div class="options">
+        <div class="tick opt">
+            <img src="../images/tick.svg" alt="Yes" onclick="tick()" style="padding: 0rem 0.3rem;">
+        </div>
+        <div class="cross opt">
+            <img src="../images/cross.svg" alt="No" onclick="cross()" style="padding: 0rem 0.3rem;">
+        </div>
+    </div>
+    <button class="home-button" onclick="generateSound()">Start Test</button>
+    <script src="https://cdn.jsdelivr.net/gh/RahulYavvari/AudioMeterAPI/generateSoundAPI.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        
+        function loadPopupBox() {
+            $('#popup_box').fadeIn("slow");
+            $("#container").css({
+            "opacity": "0.3"
+            });
+            closeAfter(3);
+        }
+        function closeAfter(delay) {
+            if (delay == 0) unloadPopupBox();
+            else {
+            $('#popup_box h1').html("Test starts in " + delay + " sec");
+            setTimeout(function () {
+                closeAfter(delay - 1)
+            }, 1000);
+            }
+        }
+        function unloadPopupBox() {
+            $('#popup_box').fadeOut("slow");
+            $("#container").css({
+            "opacity": "1"
+            });
+        }
+        function delay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        let ref_frequencies = [250, 500, 750, 1000, 1500, 2000, 3000, 4000, 6000, 8000];
+        let ref_intensities = [-10, 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120];
+        let time = 5;
+        let frequency_index = 0;
+        let intensity_index = 0;
+        let side = "left";
+        let flag = 0;
+        let counter_flag = 0;
+        let currentPair = {};
+
+        function switch_side() {
+            side = "rigth";
+            flag = 0;
+            generateSound();
+        }
+        function getResults() {
+            // needs to start our update from here
+            return 1;
+        }
+        function tick() {
+            if(counter_flag === 2){
+                return;
+            }else if(!intensity_index){
+                flag = 1; 
+            }else if(!flag && frequency_index < 9) {
+                frequency_index++;
+                intensity_index = 0;
+                getSoundAPI(ref_frequencies[frequency_index],ref_intensities[intensity_index],time,side);
+                currentPair.frequency = ref_frequencies[frequency_index];
+                currentPair.intensity = ref_intensities[intensity_index];     
+                console.log(currentPair);  
+            }else if(frequency_index === 9 && !flag){flag = 1;}
+            if(flag === 1 && counter_flag < 2){
+                counter_flag++;
+                if(counter_flag === 2){
+                    document.querySelector(".home-button").innerText = "Get Results";
+                    document.querySelector(".home-button").onclick = null;
+                    document.querySelector(".home-button").onclick = getResults;
+                }
+                switch_side();
+            }
+        }
+
+        function cross() {
+            if(counter_flag === 2){return;
+            }else if(frequency_index >= 10) {
+                flag = 1;
+            }else if(intensity_index < 13 && !flag) {
+                intensity_index++;
+                getSoundAPI(ref_frequencies[frequency_index],ref_intensities[intensity_index],time,side);
+                currentPair.frequency = ref_frequencies[frequency_index];
+                currentPair.intensity = ref_intensities[intensity_index];     
+                console.log(currentPair);            
+            }else if(intensity_index === 13 && !flag && frequency_index != 9){
+                frequency_index++;
+                intensity_index = 0;
+                getSoundAPI(ref_frequencies[frequency_index],ref_intensities[intensity_index],time,side);
+                currentPair.frequency = ref_frequencies[frequency_index];
+                currentPair.intensity = ref_intensities[intensity_index];     
+                console.log(currentPair);
+            }
+            if(flag === 1 && counter_flag < 2){
+                counter_flag++;
+                if(counter_flag === 2){
+                    document.querySelector(".home-button").innerText = "Get Results";
+                    document.querySelector(".home-button").onclick = null;
+                    document.querySelector(".home-button").onclick = getResults;
+                }
+                switch_side();
+            }
+        }   
+        function unsure() {
+            getSoundAPI(ref_frequencies[frequency_index],ref_intensities[intensity_index],time,side);
+        }
+        function generateSound() {
+            if(counter_flag > 1) {
+                return;
+            }else{
+                document.querySelector(".home-button").innerText = "Unsure?";
+                document.querySelector(".home-button").onclick = null;
+                document.querySelector(".home-button").onclick = unsure;
+                loadPopupBox();
+                setTimeout(function() {
+                getSoundAPI(ref_frequencies[frequency_index],ref_intensities[intensity_index],time,side);
+                currentPair.frequency = ref_frequencies[frequency_index];
+                currentPair.intensity = ref_intensities[intensity_index];
+                console.log(currentPair); 
+
+            },3000);
+            }
+        }
+    </script>
+    
+</body>
+</html>
+
+
+
+<!-- let a = 250;
+let b = 10;
+let sec = 5;
+let side = "left";
+getSoundAPI(a,b,sec,side); -->

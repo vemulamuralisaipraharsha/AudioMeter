@@ -1,0 +1,71 @@
+<div class="menu">
+    <div class="option-holder">
+         <div class="option">
+             <a href="./home"><img class="option-svg" alt="home-button" src="../images/home.svg"></a>
+         </div>
+         <div class="option">
+             <a href="./reports"><img class="option-svg" alt="reports-button" src="../images/reports.svg"></a>
+         </div>
+         <div class="option" onclick="toggleUserInfo()">
+            <img class="option-svg" alt="option-button" src="../images/info.svg">
+        </div>
+    </div> 
+ </div>
+
+ <div class="user-info">
+    <h2>Username</h2>
+    <!-- <div><span></span><span>&copy;</span></div> -->
+    <div class="input_copy_wrapper">
+        <div class="input_copy">
+            <span class="txt"></span>
+            <span class="icon right">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsH_jhBzBexVT86LuYZJznKSgzx7mIHv_Jp-5qzyTPLw&s"
+                    title="Click to Copy">
+            </span>
+        </div>
+
+    </div>
+    <hr />
+    <div>
+        <h3>Terms and Conditions</h3>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim repellendus quod debitis, hic assumenda
+            modi perspiciatis veniam, dolore suscipit quisquam nihil a iste vel sapiente voluptatum in! Dolorum,
+            accusantium dicta!.
+        </p>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+
+    function toggleUserInfo() {
+let userInfo = document.getElementsByClassName("user-info")[0];
+if (userInfo.style.display === "none") {
+    userInfo.style.display = "block";
+} else {
+    userInfo.style.display = "none";
+}
+}
+
+    function copyToClipboard(element) {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val($(element).text()).select();
+        document.execCommand("copy");
+        $temp.remove();
+    }
+
+    let userid = "2k3lk2n3j52n3l4";
+
+    var addrsField = $('.input_copy .txt');
+    addrsField.text(userid);
+    $('.input_copy .icon').click(function () {
+        copyToClipboard('.input_copy .txt');
+        addrsField.addClass('flashBG')
+            .delay('1000').queue(function () {
+                addrsField.removeClass('flashBG').dequeue();
+            });
+    });
+</script>

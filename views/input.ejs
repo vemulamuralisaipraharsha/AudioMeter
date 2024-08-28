@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/input.css">
+    <link rel="stylesheet" href="../css/userInfoPopup.css">
+    <title>Data</title>
+</head>
+
+<body>
+    <%- include('./partials/menu'); %>
+
+    <form method="POST" action="/input">
+        <div class="flex-box">
+            <input type="text" class="name" placeholder="Name" name="name" required>
+            <input type="number" class="age" placeholder="Age" name="age" required>
+        </div>
+        <a href="./test"><button class="begin-button" type="value">Let's Begin</button></a>
+    </form>
+
+    <form method="POST" action="/quickTest">
+        <button class="quick" onclick="location.href = '/test'">Quick Test</button>
+    </form>    
+</body>
+
+</html>
